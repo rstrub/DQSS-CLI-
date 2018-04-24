@@ -1,17 +1,11 @@
 
+DQSS_URL_LOCATION = "http://airsl2.gesdisc.eosdis.nasa.gov/daac-bin/OTF/HTTP_services.cgi?"
+
 best=(
     "COVMRLevStd",
   )
   
 good=(
-  "CO_total_column",
-  )
-
-noscreening=(
-  "CO_total_column",
-  )
-
-screenable_edit = (
   "CldFrcStd",
   "CldFrcTot",
   "PCldTop",
@@ -20,6 +14,13 @@ screenable_edit = (
   "olr",
   "clrolr",
   "CH4VMRLevStd",
+  )
+
+noscreening=(
+  "CO_total_column",
+  )
+
+donotinclude = (
   "CH4_total_column",
   "O3VMRLevStd",
   "O3VMRStd",
