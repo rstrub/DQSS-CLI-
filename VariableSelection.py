@@ -8,7 +8,6 @@ best=(
 good=(
   "CldFrcStd",
   "CldFrcTot",
-  "PCldTop",
   "TCldTop",
   "olr3x3",
   "olr",
@@ -18,6 +17,7 @@ good=(
 
 noscreening=(
   "CO_total_column",
+  "PCldTop",
   )
 
 donotinclude = (
@@ -49,28 +49,18 @@ donotinclude = (
   "H2OMMRSatSurf_liquid",
   "H2OMMRSatLevStd_liquid",
   "H2OMMRSatSurf",
-  "H2OMMRSurf",
   "H2OMMRSat_liquid", 
+  "H2OMMRSurf",
   "H2OMMRSatLevStd")
   
   
   
 ancillary_include = (
   'AMSU_Chans_Resid', 
-  'CC1_Resid', 
-  'CC1_noise_eff_amp_factor', 
-  'CC_noise_eff_amp_factor', 
-  'CCfinal_Noise_Amp', 
-  'CCfinal_Resid', 
-  'Cloud_Resid_Ratio', 
-  'EmisMWStd', 
-  'EmisMWStdErr', 
-  'GP_Height', 
+  'CC1_Resid',
   )
   
 ancillary_donotinclude = (
-  'AMSU_Chans_Resid', 
-  'CC1_Resid', 
   'CC1_noise_eff_amp_factor', 
   'CC_noise_eff_amp_factor', 
   'CCfinal_Noise_Amp', 
