@@ -6,13 +6,6 @@ best=(
   )
   
 good=(
-  "CldFrcStd",
-  "CldFrcTot",
-  "TCldTop",
-  "olr3x3",
-  "olr",
-  "clrolr",
-  "CH4VMRLevStd",
   )
 
 noscreening=(
@@ -21,6 +14,13 @@ noscreening=(
   )
 
 donotinclude = (
+  "CldFrcStd",
+  "CldFrcTot",
+  "TCldTop",
+  "olr3x3",
+  "olr",
+  "clrolr",
+  "CH4VMRLevStd",
   "CH4_total_column",
   "O3VMRLevStd",
   "O3VMRStd",

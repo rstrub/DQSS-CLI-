@@ -1,3 +1,4 @@
+from __future__ import print_function
 import sys
 from urlparse import urlparse
 import os
@@ -11,13 +12,16 @@ Author: Richard Strub
 Purpose: Creates DQSS URLS by reading VariableSelection.py
 '''
 
+def eprint(*args, **kwargs):
+        print(*args, file=sys.stderr, **kwargs)
+
 def createLabel(filepath):
 
     label = os.path.basename(filename)
     try:
       m = re.search('(?<=L2.)\w+', label)
     except AttributeError:
-      print "regex failed to find L2 in " + label 
+      print ("regex failed to find L2 in " + label)
       sys.exit(1) 
 
     label = label.replace(m.group(0),"QCSUB" + m.group(0).upper())
@@ -28,10 +32,12 @@ def checkOne(thislist,sublist):
 	try:
 	   thislist.remove(var)
         except ValueError:
-	    print "[ERROR] Variable: " + var + "'s use has been duplicated in two screening levels " 
+	    print ("[ERROR] Variable: " + var + "'s use has been duplicated in two screening levels " )
 	    sys.exit()
 
 def checkAll(screenlist,ancillary_list):
+        screenable_master = len(screenlist)
+	ancillary_master  = len(ancillary_list)
         checkOne(screenlist,VariableSelection.best) 
         checkOne(screenlist,VariableSelection.good) 
         checkOne(screenlist,VariableSelection.noscreening) 
@@ -41,13 +47,25 @@ def checkAll(screenlist,ancillary_list):
 
         missing = 0
         for item in screenlist:
-	    print "[ERROR] " + item +  " is missing from screenable variable lists"
+	    eprint ("[ERROR] " + item +  " is missing from screenable variable lists")
 	    missing += 1
         for item in ancillary_list:
-	    print "[ERROR] " + item +  " is missing from ancillary lists"
+	    eprint ("[ERROR] " + item +  " is missing from ancillary lists")
 	    missing += 1
 	if (missing > 0):
             sys.exit()
+	
+	eprint ("best:                   " + str(len(VariableSelection.best)))
+	eprint ("good:                   " + str(len(VariableSelection.good)))
+	eprint ("noscreening:            " + str(len(VariableSelection.noscreening)))
+	eprint ("donotinclude:           " + str(len(VariableSelection.donotinclude)))
+	eprint ("ancillary include:         " + str(len(VariableSelection.ancillary_include)))
+	eprint ("ancillary donotinclude:    " + str(len(VariableSelection.ancillary_donotinclude)))
+	eprint ("screenable should be:" + str(screenable_master) + \
+	" and is:" + str(len(VariableSelection.best) + len(VariableSelection.good) + len(VariableSelection.noscreening) + len(VariableSelection.donotinclude)))
+	eprint ("ancillary  should be:" + str(ancillary_master) + \
+	" and is:" + str(len(VariableSelection.ancillary_include) + len(VariableSelection.ancillary_donotinclude)))
+     
 
 
 
@@ -111,7 +129,7 @@ script.append("FILENAME=FILEPATH")
 script.append("VARIABLES=LIST")
 
 if (len (sys.argv) <  2):
-    print "expecting url as argument"
+    eprint ("expecting url as argument")
     sys.exit()
 url = sys.argv[1]
 Url = urlparse(url)
@@ -160,4 +178,4 @@ cgi = cgi.replace("LIST", list)
 cgi = cgi.replace("FILEPATH", filename)
 cgi = cgi.replace("MYLABEL", label)
 
-print cgi
+print (cgi)
