@@ -4,6 +4,8 @@ from urlparse import urlparse
 import os
 import re
 import VariableSelection 
+import urllib2
+import subprocess
 
 '''
 Author: Richard Strub
@@ -14,6 +16,20 @@ Purpose: Creates DQSS URLS by reading VariableSelection.py
 
 def eprint(*args, **kwargs):
         print(*args, file=sys.stderr, **kwargs)
+
+
+def wget(url,label):
+
+   cmd = ['wget', '--content-disposition',    \
+          '--load-cookies', '~/.urs_cookies', \
+	  '--save-cookies', '~/.urs_cookies', \
+	  '--auth-no-challenge=on',           \
+	  '--keep-session-cookies',           \
+	     url  , "-O", label]
+
+   p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+   out = p.communicate()[0]
+   print (p.returncode)
 
 def createLabel(filepath):
 
@@ -178,4 +194,4 @@ cgi = cgi.replace("LIST", list)
 cgi = cgi.replace("FILEPATH", filename)
 cgi = cgi.replace("MYLABEL", label)
 
-print (cgi)
+wget(cgi,label)
