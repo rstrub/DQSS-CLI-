@@ -8,10 +8,11 @@ good=(
   )
 
 noscreening=(
+
   )
 
 donotinclude = (
-# Moisture
+# Moisture:16
   "H2OMMRStd",
   "H2OMMRLevStd",
   "H2OMMRSat",
@@ -29,19 +30,19 @@ donotinclude = (
   "H2OMMRSat_liquid", 
   "H2OMMRSatLevStd",
 
-# Temperature
+# Temperature:4
   "TSurfStd",
   "TAirStd",
   "TAirMWOnlyStd",
   "TSurfAir",
 
-# Cloud
+# Cloud:4
   "CldFrcStd",
   "CldFrcTot",
   "PCldTop",
   "TCldTop",
 
-# Radiation
+# Radiation:3
   "olr3x3",
   "olr",
   "clrolr",
@@ -77,7 +78,7 @@ ancillary_include = (
   )
   
 ancillary_donotinclude = (
-# Ancillary: Along Track Data Fields
+# Ancillary: Along Track Data Fields:13
   'nadirTAI', 
   'sat_lat', 
   'satroll', 
