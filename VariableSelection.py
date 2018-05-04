@@ -1,41 +1,16 @@
 
-DQSS_URL_LOCATION = "http://airsl2.gesdisc.eosdis.nasa.gov/daac-bin/OTF/HTTP_services.cgi?"
+DQSS_URL_LOCATION = "https://airsl2.gesdisc.eosdis.nasa.gov/daac-bin/OTF/HTTP_services.cgi?"
 
 best=(
-    "COVMRLevStd",
   )
   
 good=(
   )
 
 noscreening=(
-  "CO_total_column",
-  "PCldTop",
   )
 
 donotinclude = (
-  "CldFrcStd",
-  "CldFrcTot",
-  "TCldTop",
-  "olr3x3",
-  "olr",
-  "clrolr",
-  "CH4VMRLevStd",
-  "CH4_total_column",
-  "O3VMRLevStd",
-  "O3VMRStd",
-  "totO3Std",
-  "GP_Surface",
-  "EmisMWStd",
-  "GP_Height",
-  "GP_Tropopause",
-  "GP_Height_MWOnly",
-  "sfcTbMWStd",
-  "emisIRStd",
-  "TSurfStd",
-  "TAirStd",
-  "TAirMWOnlyStd",
-  "TSurfAir",
   "H2OMMRStd",
   "H2OMMRLevStd",
   "H2OMMRSat",
@@ -49,18 +24,53 @@ donotinclude = (
   "H2OMMRSatSurf_liquid",
   "H2OMMRSatLevStd_liquid",
   "H2OMMRSatSurf",
-  "H2OMMRSat_liquid", 
   "H2OMMRSurf",
-  "H2OMMRSatLevStd")
+  "H2OMMRSat_liquid", 
+  "H2OMMRSatLevStd",
+
+  "TSurfStd",
+  "TAirStd",
+  "TAirMWOnlyStd",
+  "TSurfAir",
+
+  "CldFrcStd",
+  "CldFrcTot",
+  "PCldTop",
+  "TCldTop",
+
+  "olr3x3",
+  "olr",
+  "clrolr",
+
+  "CO_total_column",
+  "COVMRLevStd",
+
+  "CH4VMRLevStd",
+  "CH4_total_column",
+
+  "O3VMRLevStd",
+  "O3VMRStd",
+  "totO3Std",
+
+  "GP_Surface",
+  "EmisMWStd",
+  "GP_Height",
+  "GP_Tropopause",
+  "GP_Height_MWOnly",
+  "sfcTbMWStd",
+  "emisIRStd",
+
+  )
+
   
   
   
 ancillary_include = (
-  'AMSU_Chans_Resid', 
-  'CC1_Resid',
   )
   
 ancillary_donotinclude = (
+  'AMSU_Chans_Resid', 
+  'CC1_Resid',
   'CC1_noise_eff_amp_factor', 
   'CC_noise_eff_amp_factor', 
   'CCfinal_Noise_Amp', 
