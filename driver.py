@@ -107,17 +107,18 @@ VTypeHash["Moisture_Variables"] = ("H2OMMRStd","H2OMMRLevStd","H2OMMRSat","RelHu
 
 # SUPPORTING DATA: Leave these alone: 
 support = {}
-support["Moisture_Variables"]  = ('H2OMMRLevStd_QC', 'H2OMMRSat_QC', 'H2OMMRSat_liquid_QC', 'H2OMMRStd_QC', 'totCldH2OStd_QC',
+support["Moisture_Variables"]  = ['H2OMMRLevStd_QC', 'H2OMMRSat_QC', 'H2OMMRSat_liquid_QC', 'H2OMMRStd_QC', 'totCldH2OStd_QC',
            'totH2OMWOnlyStd_QC', 'totH2OStd_QC', 'RelHumSurf_QC', 'RelHum_QC', 'RelHumSurf_liquid_QC', 
            'RelHum_liquid_QC', 'H2OMMRSatSurf_QC', 'H2OMMRSatSurf_liquid_QC', 'H2OMMRSatLevStd_QC' , 'H2OMMRSatLevStd_liquid_QC',
-           'H2OMMRSurf_QC', 'pressStd' )
-Temperature = ['TAirMWOnlyStd_QC', 'TAirStd_QC', 'TSurfAir_QC', 'TSurfStd_QC', 'pressStd'],
-Cloud       =  ['CldFrcTot_QC', 'CldFrcStd_QC', 'PCldTop_QC', 'TCldTop_QC'],
-Radiation = [ 'clrolr_QC', 'olr_QC', 'olr3x3_QC' ],
-support["CO_Variables"]       = ('COVMRLevStd_QC',  'CO_total_column_QC')
-Methane   = ['CH4VMRLevStd_QC', 'CH4_total_column_QC' ],
-Full_Swath_Data_Fields = ['EmisMWStd_QC', 'sfcTbMWStd_QC', 'emisIRStd_QC', 'GP_Height_QC', 'GP_Height_MWOnly_QC', 'GP_Surface_QC', 'GP_Tropopause_QC' ],
-Ozone = [ 'O3VMRStd_QC', 'totO3Std_QC', 'O3VMRLevStd_QC']
+           'H2OMMRSurf_QC', 'pressStd' ]
+
+support["Temperature_Variables"]   = ['TAirMWOnlyStd_QC', 'TAirStd_QC', 'TSurfAir_QC', 'TSurfStd_QC', 'pressStd']
+support["Cloud_Variables"]         = ['CldFrcTot_QC', 'CldFrcStd_QC', 'PCldTop_QC', 'TCldTop_QC']
+support["Radiation_Variables"]     = [ 'clrolr_QC', 'olr_QC', 'olr3x3_QC' ]
+support["CO_Variables"]            = ['COVMRLevStd_QC',  'CO_total_column_QC']
+support["Methane_Variables"]       = ['CH4VMRLevStd_QC', 'CH4_total_column_QC' ]
+support["Ozone_Variables"]         = [ 'O3VMRStd_QC', 'totO3Std_QC', 'O3VMRLevStd_QC']
+support["Full_Swath_Data_Fields_Variables"] = ['EmisMWStd_QC', 'sfcTbMWStd_QC', 'emisIRStd_QC', 'GP_Height_QC', 'GP_Height_MWOnly_QC', 'GP_Surface_QC', 'GP_Tropopause_QC' ]
 
 # SCREENABLE DATA BACKUP LIST
 screenable = \
@@ -172,13 +173,34 @@ for item in VariableSelection.noscreening:
 for item in VariableSelection.donotinclude:
     list += item + ".DoNotInclude,"
 
+already = []
 # Include needed supporting variables:
 for item in VariableSelection.best:
     for vtype in VariableTypes:
 
         if item in VTypeHash[vtype]:
 	    for var in support[vtype]:
-	        list += var + ".Include,";
+		if var not in already:
+	            list += var + ".Include,";
+		    already.append(var)
+            break
+for item in VariableSelection.good:
+    for vtype in VariableTypes:
+
+        if item in VTypeHash[vtype]:
+	    for var in support[vtype]:
+		if var not in already:
+	            list += var + ".Include,";
+		    already.append(var)
+            break
+for item in VariableSelection.noscreening:
+    for vtype in VariableTypes:
+
+        if item in VTypeHash[vtype]:
+	    for var in support[vtype]:
+		if var not in already:
+	            list += var + ".Include,";
+		    already.append(var)
             break
 
 
