@@ -176,7 +176,7 @@ for item in VariableSelection.donotinclude:
 for item in VariableSelection.best:
     for vtype in VariableTypes:
 
-        if VTypeHash[vtype].has_key(item):
+        if item in VTypeHash[vtype].keys():
 	    for var in support[vtype]:
 	        list += var + ".Include,";
             break
