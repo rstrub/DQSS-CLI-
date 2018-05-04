@@ -96,7 +96,7 @@ VariableTypes = ('CO_Variables',
 
 # Which variables are available for screening and which group they belong to. This was retrieved from useperl.pl
 VTypeHash = {}
-VTypeHash["CO_Variables"] = {"CO_total_column":1,"COVMRLevStd":1}
+VTypeHash["CO_Variables"] = ("CO_total_column","COVMRLevStd")
 VTypeHash["Cloud_Variables"] = ("CldFrcStd","CldFrcTot","PCldTop","TCldTop",)
 VTypeHash["Radiation_Variables"] = ("olr3x3","olr","clrolr",)
 VTypeHash["Methane_Variables"] = ("CH4VMRLevStd","CH4_total_column",)
@@ -176,7 +176,7 @@ for item in VariableSelection.donotinclude:
 for item in VariableSelection.best:
     for vtype in VariableTypes:
 
-        if item in VTypeHash[vtype].keys():
+        if item in VTypeHash[vtype]:
 	    for var in support[vtype]:
 	        list += var + ".Include,";
             break
