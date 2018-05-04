@@ -13,62 +13,61 @@ noscreening=(
 
 donotinclude = (
 # Moisture:16
-  "H2OMMRStd",
-  "H2OMMRLevStd",
-  "H2OMMRSat",
-  "RelHumSurf",
-  "totCldH2OStd",
-  "totH2OMWOnlyStd",
-  "totH2OStd",
-  "RelHum",
-  "RelHumSurf_liquid",
-  "RelHum_liquid",
-  "H2OMMRSatSurf_liquid",
-  "H2OMMRSatLevStd_liquid",
-  "H2OMMRSatSurf",
-  "H2OMMRSurf",
-  "H2OMMRSat_liquid", 
-  "H2OMMRSatLevStd",
+  "H2OMMRStd",               # Moisture
+  "H2OMMRLevStd",            # Moisture
+  "H2OMMRSat",               # Moisture
+  "RelHumSurf",              # Moisture
+  "totCldH2OStd",            # Moisture
+  "totH2OMWOnlyStd",         # Moisture
+  "totH2OStd",               # Moisture
+  "RelHum",                  # Moisture
+  "RelHumSurf_liquid",       # Moisture
+  "RelHum_liquid",           # Moisture
+  "H2OMMRSatSurf_liquid",    # Moisture
+  "H2OMMRSatLevStd_liquid",  # Moisture
+  "H2OMMRSatSurf",           # Moisture
+  "H2OMMRSurf",              # Moisture
+  "H2OMMRSat_liquid",        # Moisture
+  "H2OMMRSatLevStd",         # Moisture
 
 # Temperature:4
-  "TSurfStd",
-  "TAirStd",
-  "TAirMWOnlyStd",
-  "TSurfAir",
+  "TSurfStd",      # Temperature
+  "TAirStd",       # Temperature
+  "TAirMWOnlyStd", # Temperature
+  "TSurfAir",      # Temperature
 
 # Cloud:4
-  "CldFrcStd",
-  "CldFrcTot",
-  "PCldTop",
-  "TCldTop",
+  "CldFrcStd", # Cloud
+  "CldFrcTot", # Cloud
+  "PCldTop",   # Cloud
+  "TCldTop",   # Cloud
 
 # Radiation:3
-  "olr3x3",
-  "olr",
-  "clrolr",
+  "olr3x3", # Radiation
+  "olr",    # Radiation
+  "clrolr", # Radiation
 
 # CO
-  "CO_total_column",
-  "COVMRLevStd",
+  "CO_total_column", # CO
+  "COVMRLevStd",     # CO
 
 # Methane
-  "CH4VMRLevStd",
-  "CH4_total_column",
+  "CH4VMRLevStd",     # Methane
+  "CH4_total_column", # Methane
 
 # Ozone
-  "O3VMRLevStd",
-  "O3VMRStd",
-  "totO3Std",
+  "O3VMRLevStd", # Ozone
+  "O3VMRStd",    # Ozone
+  "totO3Std",    # Ozone
 
 # Full Swath
-  "GP_Surface",
-  "EmisMWStd",
-  "GP_Height",
-  "GP_Tropopause",
-  "GP_Height_MWOnly",
-  "sfcTbMWStd",
-  "emisIRStd",
-
+  "GP_Surface",       # Full Swath
+  "EmisMWStd",        # Full Swath
+  "GP_Height",        # Full Swath
+  "GP_Tropopause",    # Full Swath
+  "GP_Height_MWOnly", # Full Swath
+  "sfcTbMWStd",       # Full Swath
+  "emisIRStd",        # Full Swath
   )
 
   
@@ -79,66 +78,66 @@ ancillary_include = (
   
 ancillary_donotinclude = (
 # Ancillary: Along Track Data Fields:13
-  'nadirTAI', 
-  'sat_lat', 
-  'satroll', 
-  'glintlon', 
-  'scan_node_type', 
-  'glintlat', 
-  'satpitch', 
-  'satheight', 
-  'satyaw', 
-  'sat_lon', 
-  'glintgeoqa', 
-  'moongeoqa', 
-  'satgeoqa', 
-# Ancillary: Full Swath
-  'demgeoqa', 
-  'satazi', 
-  'topog_err', 
-  'sun_glint_distance', 
-  'solazi', 
-  'landFrac_err', 
-  'landFrac', 
-  'topog', 
-  'solzen', 
-  'ftptgeoqa', 
-  'zengeoqa',
-  'satzen', 
-# Ancillary: Per Granule
-  'GP_Surface', 
-  'Tdiff_IR_4CC1', 
-  'CC1_noise_eff_amp_factor', 
-  'EmisMWStd', 
-  'GP_Tropopause', 
-  'Surf_Resid_Ratio', 
-  'numHingeSurf', 
-  'all_spots_avg', 
-  'Cloud_Resid_Ratio', 
-  'Initial_CC_score', 
-  'sfcTbMWStd', 
-  'TSurfdiff_IR_4CC1', 
-  'CC1_Resid',
-  'RetQAFlag', 
-  'AMSU_Chans_Resid', 
-  'spectral_clear_indicator', 
-  'Water_Resid_Ratio', 
-  'Tdiff_IR_MW_ret', 
-  'Startup', 
-  'Qual_Guess_PSurf', 
-  'GP_Height_MWOnly', 
-  'MW_ret_used', 
-  'CCfinal_Noise_Amp', 
-  'PTropopause', 
-  'retrieval_type', 
-  'GP_Height', 
-  'TotCld_4_CCfinal', 
-  'CC_noise_eff_amp_factor', 
-  'CCfinal_Resid', 
-  'EmisMWStdErr', 
-  'T_Tropopause', 
-  'Temp_Resid_Ratio', 
-  'dust_flag', 
-  'TSurfdiff_IR_4CC2', 
-  'num_clear_spectral_indicator', 
+  'nadirTAI',        # Ancillary:Along Track
+  'sat_lat',         # Ancillary:Along Track
+  'satroll',         # Ancillary:Along Track
+  'glintlon',        # Ancillary:Along Track
+  'scan_node_type',  # Ancillary:Along Track
+  'glintlat',        # Ancillary:Along Track
+  'satpitch',        # Ancillary:Along Track
+  'satheight',       # Ancillary:Along Track
+  'satyaw',          # Ancillary:Along Track
+  'sat_lon',         # Ancillary:Along Track
+  'glintgeoqa',      # Ancillary:Along Track
+  'moongeoqa',       # Ancillary:Along Track
+  'satgeoqa',        # Ancillary:Along Track
+# Ancillary: Full Swath:12
+  'demgeoqa',            # Ancillary:Full Swath
+  'satazi',              # Ancillary:Full Swath
+  'topog_err',           # Ancillary:Full Swath
+  'sun_glint_distance',  # Ancillary:Full Swath
+  'solazi',              # Ancillary:Full Swath
+  'landFrac_err',        # Ancillary:Full Swath
+  'landFrac',            # Ancillary:Full Swath
+  'topog',               # Ancillary:Full Swath
+  'solzen',              # Ancillary:Full Swath
+  'ftptgeoqa',           # Ancillary:Full Swath
+  'zengeoqa',            # Ancillary:Full Swath
+  'satzen',              # Ancillary:Full Swath
+# Ancillary: Per Granule:35
+  'GP_Surface',                    # Ancillary:Per Granule
+  'Tdiff_IR_4CC1',                 # Ancillary:Per Granule
+  'CC1_noise_eff_amp_factor',      # Ancillary:Per Granule
+  'EmisMWStd',                     # Ancillary:Per Granule
+  'GP_Tropopause',                 # Ancillary:Per Granule
+  'Surf_Resid_Ratio',              # Ancillary:Per Granule
+  'numHingeSurf',                  # Ancillary:Per Granule
+  'all_spots_avg',                 # Ancillary:Per Granule
+  'Cloud_Resid_Ratio',             # Ancillary:Per Granule
+  'Initial_CC_score',              # Ancillary:Per Granule
+  'sfcTbMWStd',                    # Ancillary:Per Granule
+  'TSurfdiff_IR_4CC1',             # Ancillary:Per Granule
+  'CC1_Resid',                     # Ancillary:Per Granule
+  'RetQAFlag',                     # Ancillary:Per Granule
+  'AMSU_Chans_Resid',              # Ancillary:Per Granule
+  'spectral_clear_indicator',      # Ancillary:Per Granule
+  'Water_Resid_Ratio',             # Ancillary:Per Granule
+  'Tdiff_IR_MW_ret',               # Ancillary:Per Granule
+  'Startup',                       # Ancillary:Per Granule
+  'Qual_Guess_PSurf',              # Ancillary:Per Granule
+  'GP_Height_MWOnly',              # Ancillary:Per Granule
+  'MW_ret_used',                   # Ancillary:Per Granule
+  'CCfinal_Noise_Amp',             # Ancillary:Per Granule
+  'PTropopause',                   # Ancillary:Per Granule
+  'retrieval_type',                # Ancillary:Per Granule
+  'GP_Height',                     # Ancillary:Per Granule
+  'TotCld_4_CCfinal',              # Ancillary:Per Granule
+  'CC_noise_eff_amp_factor',       # Ancillary:Per Granule
+  'CCfinal_Resid',                 # Ancillary:Per Granule
+  'EmisMWStdErr',                  # Ancillary:Per Granule
+  'T_Tropopause',                  # Ancillary:Per Granule
+  'Temp_Resid_Ratio',              # Ancillary:Per Granule
+  'dust_flag',                     # Ancillary:Per Granule
+  'TSurfdiff_IR_4CC2',             # Ancillary:Per Granule
+  'num_clear_spectral_indicator',  # Ancillary:Per Granule
   )
