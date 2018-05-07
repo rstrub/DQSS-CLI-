@@ -11,7 +11,12 @@ import subprocess
 Author: Richard Strub
         richard.f.strub@nasa.gov
 
-Purpose: Creates DQSS URLS by reading VariableSelection.py
+Purpose: Creates DQSS URLS by reading a user edited VariableSelection.py
+
+Synopsis: python ./driver.py URL
+
+Further documentation at the top of VariableSelection.py
+
 '''
 
 def eprint(*args, **kwargs):
