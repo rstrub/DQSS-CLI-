@@ -1,3 +1,27 @@
+'''
+This file has 2 lists: Screen-able variables and Ancillary variables.
+Put any of the screenable variables into the appropriate list by MOVING (not just copying)
+the variable from the donotinclude list to the best, good, or noscreening list. (noscreening includes the variable)
+e.g.:
+
+best=(
+  "RelHumSurf",              # Moisture
+  "totCldH2OStd",            # Moisture
+  "totH2OMWOnlyStd",         # Moisture
+  "CldFrcStd", # Cloud
+  "CldFrcTot", # Cloud
+  )
+
+and:
+ancillary_include = (
+  'landFrac_err',        # Ancillary:Full Swath
+  'landFrac',            # Ancillary:Full Swath
+  )
+and then run:
+python ./driver.py URL
+
+'''
+
 
 DQSS_URL_LOCATION = "https://airsl2.gesdisc.eosdis.nasa.gov/daac-bin/OTF/HTTP_services.cgi?"
 
