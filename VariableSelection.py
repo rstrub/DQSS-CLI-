@@ -18,7 +18,7 @@ ancillary_include = (
   'landFrac',            # Ancillary:Full Swath
   )
 and then run:
-python ./driver.py URL
+python ./get_qualscreened_file.py URL
 
 '''
 
