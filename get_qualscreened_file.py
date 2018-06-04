@@ -5,6 +5,7 @@ from urlparse import urlparse
 import os
 import re
 import VariableSelection 
+from VariableSelection import DQSS_FORMAT
 import urllib2
 import subprocess
 
@@ -49,6 +50,10 @@ def createLabel(filepath):
       sys.exit(1) 
 
     label = label.replace(m.group(0),"QCSUB" + m.group(0).upper())
+
+    if (DQSS_FORMAT == "NetCDF"): 
+        label = label.replace(".hdf",".nc")
+
     return label 
 
 def checkOne(thislist,sublist):
@@ -109,7 +114,8 @@ VTypeHash["Cloud_Variables"] = ("CldFrcStd","CldFrcTot","PCldTop","TCldTop",)
 VTypeHash["Radiation_Variables"] = ("olr3x3","olr","clrolr",)
 VTypeHash["Methane_Variables"] = ("CH4VMRLevStd","CH4_total_column",)
 VTypeHash["Ozone_Variables"] = ("O3VMRLevStd","O3VMRStd","totO3Std",)
-VTypeHash["Full_Swath_Data_Fields_Variables"] = ("GP_Surface","EmisMWStd","GP_Height","GP_Tropopause","GP_Height_MWOnly","sfcTbMWStd","emisIRStd",)
+VTypeHash["Full_Swath_Data_Fields_Variables"] = ("GP_Surface","EmisMWStd","GP_Height","GP_Tropopause","GP_Height_MWOnly","emisIRStd",)
+#VTypeHash["Full_Swath_Data_Fields_Variables"] = ("GP_Surface","EmisMWStd","GP_Height","GP_Tropopause","GP_Height_MWOnly","sfcTbMWStd","emisIRStd",)
 VTypeHash["Temperature_Variables"] = ("TSurfStd","TAirStd","TAirMWOnlyStd","TSurfAir",)
 VTypeHash["Moisture_Variables"] = ("H2OMMRStd","H2OMMRLevStd","H2OMMRSat","RelHumSurf","totCldH2OStd","totH2OMWOnlyStd","totH2OStd","RelHum","RelHumSurf_liquid","RelHum_liquid","H2OMMRSatSurf_liquid","H2OMMRSatLevStd_liquid","H2OMMRSatSurf","H2OMMRSurf","H2OMMRSat_liquid","H2OMMRSatLevStd")
 
@@ -133,7 +139,7 @@ screenable = \
  ["CO_total_column","COVMRLevStd", "CldFrcStd","CldFrcTot","PCldTop","TCldTop", "olr3x3","olr","clrolr", "CH4VMRLevStd","CH4_total_column", "O3VMRLevStd","O3VMRStd","totO3Std", "GP_Surface","EmisMWStd","GP_Height","GP_Tropopause","GP_Height_MWOnly","sfcTbMWStd","emisIRStd", "TSurfStd","TAirStd","TAirMWOnlyStd","TSurfAir", "H2OMMRStd","H2OMMRLevStd","H2OMMRSat","RelHumSurf","totCldH2OStd","totH2OMWOnlyStd","totH2OStd","RelHum","RelHumSurf_liquid","RelHum_liquid","H2OMMRSatSurf_liquid","H2OMMRSatLevStd_liquid","H2OMMRSatSurf","H2OMMRSurf","H2OMMRSat_liquid","H2OMMRSatLevStd"]
 
 # ANCILLARY DATA BACKUP LIST
-ancillary = ['AMSU_Chans_Resid', 'CC1_Resid', 'CC1_noise_eff_amp_factor', 'CC_noise_eff_amp_factor', 'CCfinal_Noise_Amp', 'CCfinal_Resid', 'Cloud_Resid_Ratio', 'EmisMWStd', 'EmisMWStdErr', 'GP_Height', 'GP_Height_MWOnly', 'GP_Surface', 'GP_Tropopause', 'Initial_CC_score', 'MW_ret_used', 'PTropopause', 'Qual_Guess_PSurf', 'RetQAFlag', 'Startup', 'Surf_Resid_Ratio', 'TSurfdiff_IR_4CC1', 'TSurfdiff_IR_4CC2', 'T_Tropopause', 'Tdiff_IR_4CC1', 'Tdiff_IR_MW_ret', 'Temp_Resid_Ratio', 'TotCld_4_CCfinal', 'Water_Resid_Ratio', 'all_spots_avg', 'demgeoqa', 'dust_flag', 'ftptgeoqa', 'glintgeoqa', 'glintlat', 'glintlon', 'landFrac', 'landFrac_err', 'moongeoqa', 'nadirTAI', 'numHingeSurf', 'num_clear_spectral_indicator', 'retrieval_type', 'sat_lat', 'sat_lon', 'satazi', 'satgeoqa', 'satheight', 'satpitch', 'satroll', 'satyaw', 'satzen', 'scan_node_type', 'sfcTbMWStd', 'solazi', 'solzen', 'spectral_clear_indicator', 'sun_glint_distance', 'topog', 'topog_err', 'zengeoqa']
+ancillary = ['AMSU_Chans_Resid', 'CC1_Resid', 'CC1_noise_eff_amp_factor', 'CC_noise_eff_amp_factor', 'CCfinal_Noise_Amp', 'CCfinal_Resid', 'Cloud_Resid_Ratio', 'EmisMWStd', 'EmisMWStdErr', 'GP_Height', 'GP_Height_MWOnly', 'GP_Surface', 'GP_Tropopause', 'Initial_CC_score', 'MW_ret_used', 'PTropopause', 'Qual_Guess_PSurf', 'RetQAFlag', 'Startup', 'Surf_Resid_Ratio', 'TSurfdiff_IR_4CC1', 'TSurfdiff_IR_4CC2', 'T_Tropopause', 'Tdiff_IR_4CC1', 'Tdiff_IR_MW_ret', 'Temp_Resid_Ratio', 'TotCld_4_CCfinal', 'Water_Resid_Ratio', 'all_spots_avg', 'demgeoqa', 'dust_flag', 'ftptgeoqa', 'glintgeoqa', 'glintlat', 'glintlon', 'landFrac', 'landFrac_err', 'moongeoqa', 'nadirTAI', 'numHingeSurf', 'num_clear_spectral_indicator', 'retrieval_type', 'sat_lat', 'sat_lon', 'satazi', 'satgeoqa', 'satheight', 'satpitch', 'satroll', 'satyaw', 'satzen', 'scan_node_type',  'solazi', 'solzen', 'spectral_clear_indicator', 'sun_glint_distance', 'topog', 'topog_err', 'zengeoqa']
 
 
 checkAll(screenable,ancillary)
@@ -146,7 +152,12 @@ script = []
 script.append(VariableSelection.DQSS_URL_LOCATION)
 script.append("DATASET_VERSION=006")
 script.append("SERVICE=SUBAIRSL2_DQS")
-script.append("FORMAT=SERGLw")
+
+if (DQSS_FORMAT == "NetCDF"): 
+    script.append("FORMAT=TmV0Q0RGLw")
+else:
+    script.append("FORMAT=SERGLw")
+
 script.append("LABEL=MYLABEL")
 script.append("VERSION=1.02")
 script.append("SHORTNAME=AIRX2RET")
@@ -154,7 +165,8 @@ script.append("FILENAME=FILEPATH")
 script.append("VARIABLES=LIST")
 
 if (len (sys.argv) <  2):
-    eprint ("expecting url as argument")
+    eprint ("\nspecify output format using DQSS_FORMAT in VariableSelection.py")
+    eprint ("\nexpecting url as argument")
     sys.exit()
 url = sys.argv[1]
 Url = urlparse(url)

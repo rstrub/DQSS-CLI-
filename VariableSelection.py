@@ -18,12 +18,15 @@ ancillary_include = (
   'landFrac',            # Ancillary:Full Swath
   )
 and then run:
-python ./get_qualscreened_file.py URL
+python ./driver.py URL
 
 '''
 
 
 DQSS_URL_LOCATION = "https://airsl2.gesdisc.eosdis.nasa.gov/daac-bin/OTF/HTTP_services.cgi?"
+DQSS_FORMAT = "NetCDF"
+#DQSS_FORMAT = "HDF"
+
 
 best=(
   )
@@ -32,21 +35,20 @@ good=(
   )
 
 noscreening=(
-
   )
 
 donotinclude = (
 # Moisture:16
-  "H2OMMRStd",               # Moisture
   "H2OMMRLevStd",            # Moisture
+  "RelHum",                  # Moisture
+  "RelHumSurf_liquid",       # Moisture
+  "RelHum_liquid",           # Moisture
+  "H2OMMRStd",               # Moisture
+  "totH2OStd",               # Moisture
   "H2OMMRSat",               # Moisture
   "RelHumSurf",              # Moisture
   "totCldH2OStd",            # Moisture
   "totH2OMWOnlyStd",         # Moisture
-  "totH2OStd",               # Moisture
-  "RelHum",                  # Moisture
-  "RelHumSurf_liquid",       # Moisture
-  "RelHum_liquid",           # Moisture
   "H2OMMRSatSurf_liquid",    # Moisture
   "H2OMMRSatLevStd_liquid",  # Moisture
   "H2OMMRSatSurf",           # Moisture
@@ -71,27 +73,27 @@ donotinclude = (
   "olr",    # Radiation
   "clrolr", # Radiation
 
-# CO
+# CO:2
   "CO_total_column", # CO
   "COVMRLevStd",     # CO
 
-# Methane
+# Methane:2
   "CH4VMRLevStd",     # Methane
   "CH4_total_column", # Methane
 
-# Ozone
+# Ozone:3
   "O3VMRLevStd", # Ozone
   "O3VMRStd",    # Ozone
   "totO3Std",    # Ozone
 
-# Full Swath
+# Full Swath:7
   "GP_Surface",       # Full Swath
   "EmisMWStd",        # Full Swath
   "GP_Height",        # Full Swath
   "GP_Tropopause",    # Full Swath
-  "GP_Height_MWOnly", # Full Swath
-  "sfcTbMWStd",       # Full Swath
   "emisIRStd",        # Full Swath
+  "GP_Height_MWOnly", # Full Swath not in GUI
+  "sfcTbMWStd",       # Full Swath not in GUI
   )
 
   
@@ -102,10 +104,6 @@ ancillary_include = (
   
 ancillary_donotinclude = (
 # Ancillary: Along Track Data Fields:13
-  'nadirTAI',        # Ancillary:Along Track
-  'sat_lat',         # Ancillary:Along Track
-  'satroll',         # Ancillary:Along Track
-  'glintlon',        # Ancillary:Along Track
   'scan_node_type',  # Ancillary:Along Track
   'glintlat',        # Ancillary:Along Track
   'satpitch',        # Ancillary:Along Track
@@ -115,6 +113,10 @@ ancillary_donotinclude = (
   'glintgeoqa',      # Ancillary:Along Track
   'moongeoqa',       # Ancillary:Along Track
   'satgeoqa',        # Ancillary:Along Track
+  'nadirTAI',        # Ancillary:Along Track
+  'sat_lat',         # Ancillary:Along Track
+  'satroll',         # Ancillary:Along Track
+  'glintlon',        # Ancillary:Along Track
 # Ancillary: Full Swath:12
   'demgeoqa',            # Ancillary:Full Swath
   'satazi',              # Ancillary:Full Swath
@@ -139,7 +141,6 @@ ancillary_donotinclude = (
   'all_spots_avg',                 # Ancillary:Per Granule
   'Cloud_Resid_Ratio',             # Ancillary:Per Granule
   'Initial_CC_score',              # Ancillary:Per Granule
-  'sfcTbMWStd',                    # Ancillary:Per Granule
   'TSurfdiff_IR_4CC1',             # Ancillary:Per Granule
   'CC1_Resid',                     # Ancillary:Per Granule
   'RetQAFlag',                     # Ancillary:Per Granule
