@@ -6,6 +6,8 @@ import os
 import re
 import VariableSelection 
 from VariableSelection import DQSS_FORMAT
+from VariableSelection import PRODUCT_SHORTNAME
+from VariableSelection import DQSS_URL_LOCATION
 import urllib2
 import subprocess
 
@@ -149,7 +151,7 @@ checkAll(screenable,ancillary)
 # leaveOut includes DoNotInclude selections but does not specify to remove non-needed supporting variables.
 script = []
 # THIS URL MAY CHANGE ONE DAY:
-script.append(VariableSelection.DQSS_URL_LOCATION)
+script.append(DQSS_URL_LOCATION)
 script.append("DATASET_VERSION=006")
 script.append("SERVICE=SUBAIRSL2_DQS")
 
@@ -160,7 +162,7 @@ else:
 
 script.append("LABEL=MYLABEL")
 script.append("VERSION=1.02")
-script.append("SHORTNAME=AIRX2RET")
+script.append("SHORTNAME=" + PRODUCT_SHORTNAME)
 script.append("FILENAME=FILEPATH")
 script.append("VARIABLES=LIST")
 

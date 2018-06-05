@@ -7,7 +7,7 @@ e.g.:
 best=(
   "RelHumSurf",              # Moisture
   "totCldH2OStd",            # Moisture
-  "totH2OMWOnlyStd",         # Moisture
+  "totH2OMWOnlyStd",         # Moisture * not in AIRS (this means if you are working with AIRS rather than AIRH or AIRX2RET, leave this in donotinclude list)
   "CldFrcStd", # Cloud
   "CldFrcTot", # Cloud
   )
@@ -20,13 +20,25 @@ ancillary_include = (
 and then run:
 python ./driver.py URL
 
+
 '''
 
+# GENERAL CONFIGURATION
+# ---------------------
 
 DQSS_URL_LOCATION = "https://airsl2.gesdisc.eosdis.nasa.gov/daac-bin/OTF/HTTP_services.cgi?"
-DQSS_FORMAT = "NetCDF"
-#DQSS_FORMAT = "HDF"
 
+#DQSS_FORMAT       = "NetCDF"
+DQSS_FORMAT = "HDF"
+
+PRODUCT_SHORTNAME = 'AIRS2RET'
+#PRODUCT_SHORTNAME = 'AIRX2RET'
+#PRODUCT_SHORTNAME = 'AIRH2RET'
+
+
+
+# VARIABLE CONFIGURATION: (ancillary is further below)
+# ----------------------
 
 best=(
   )
@@ -39,6 +51,9 @@ noscreening=(
 
 donotinclude = (
 # Moisture:16
+  "H2OMMRSurf",              # Moisture
+  "H2OMMRSat_liquid",        # Moisture
+  "H2OMMRSatLevStd",         # Moisture
   "H2OMMRLevStd",            # Moisture
   "RelHum",                  # Moisture
   "RelHumSurf_liquid",       # Moisture
@@ -48,18 +63,15 @@ donotinclude = (
   "H2OMMRSat",               # Moisture
   "RelHumSurf",              # Moisture
   "totCldH2OStd",            # Moisture
-  "totH2OMWOnlyStd",         # Moisture
+  "totH2OMWOnlyStd",         # Moisture * not in AIRS
   "H2OMMRSatSurf_liquid",    # Moisture
   "H2OMMRSatLevStd_liquid",  # Moisture
   "H2OMMRSatSurf",           # Moisture
-  "H2OMMRSurf",              # Moisture
-  "H2OMMRSat_liquid",        # Moisture
-  "H2OMMRSatLevStd",         # Moisture
 
 # Temperature:4
   "TSurfStd",      # Temperature
   "TAirStd",       # Temperature
-  "TAirMWOnlyStd", # Temperature
+  "TAirMWOnlyStd", # Temperature not in AIRS
   "TSurfAir",      # Temperature
 
 # Cloud:4
@@ -92,8 +104,8 @@ donotinclude = (
   "GP_Height",        # Full Swath
   "GP_Tropopause",    # Full Swath
   "emisIRStd",        # Full Swath
-  "GP_Height_MWOnly", # Full Swath not in GUI
-  "sfcTbMWStd",       # Full Swath not in GUI
+  "GP_Height_MWOnly", # Full Swath not in AIRS
+  "sfcTbMWStd",       # Full Swath not in AIRS
   )
 
   
@@ -118,14 +130,14 @@ ancillary_donotinclude = (
   'satroll',         # Ancillary:Along Track
   'glintlon',        # Ancillary:Along Track
 # Ancillary: Full Swath:12
-  'demgeoqa',            # Ancillary:Full Swath
-  'satazi',              # Ancillary:Full Swath
-  'topog_err',           # Ancillary:Full Swath
-  'sun_glint_distance',  # Ancillary:Full Swath
   'solazi',              # Ancillary:Full Swath
   'landFrac_err',        # Ancillary:Full Swath
   'landFrac',            # Ancillary:Full Swath
   'topog',               # Ancillary:Full Swath
+  'demgeoqa',            # Ancillary:Full Swath
+  'satazi',              # Ancillary:Full Swath
+  'topog_err',           # Ancillary:Full Swath
+  'sun_glint_distance',  # Ancillary:Full Swath
   'solzen',              # Ancillary:Full Swath
   'ftptgeoqa',           # Ancillary:Full Swath
   'zengeoqa',            # Ancillary:Full Swath
