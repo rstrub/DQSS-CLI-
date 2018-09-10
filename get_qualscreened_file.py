@@ -97,6 +97,14 @@ def checkAll(screenlist,ancillary_list):
 	eprint ("ancillary  should be:" + str(ancillary_master) + \
 	" and is:" + str(len(VariableSelection.ancillary_include) + len(VariableSelection.ancillary_donotinclude)))
      
+def checkProductAgainstURL(Url):
+    
+    m = re.search(PRODUCT_SHORTNAME, Url.path)
+    if (m == None):   
+      print ("launcher failed to find " + PRODUCT_SHORTNAME + " in " +  Url.path)
+      print ("Make sure your PRODUCT_SHORTNAME designation corresponds to the granule URL")
+      sys.exit(1) 
+
 
 
 
@@ -175,6 +183,7 @@ Url = urlparse(url)
 # In our case the path section of the URL is the same as the system filepath
 filename = Url.path
 label = createLabel(filename)
+checkProductAgainstURL(Url)
 
 cgi = ""
 for item in script:
