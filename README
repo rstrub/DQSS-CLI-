@@ -1,0 +1,76 @@
+Example:
+--------
+./get_qualscreened_file.py https://airsl2.gesdisc.eosdis.nasa.gov/data//Aqua_AIRS_Level2/AIRS2RET.006/2018/123/AIRS.2018.05.03.203.L2.RetStd_IR.v6.0.31.0.G18124130912.hdf
+
+Overview:
+---------
+VariableSelection.py is a configuration file
+get_qualscreened_file.py is the main, driver script
+
+Format:
+-------
+NetCDF or HDF
+Use DQSS_FORMAT in VariableSelection.py
+
+Product:
+--------
+AIRX2RET, AIRS2RET, or AIRH2RET
+Use PRODUCT_SHORTNAME in VariableSelection.py
+ 
+All of the variables can be used with AIRX2RET, and AIRH2RET.
+Those that are not in AIRS2RET are commented like:
+  "totH2OMWOnlyStd",         # Moisture * not in AIRS
+
+
+Variables:
+----------
+To run DQSS on a variable, edit VariableSelection.py,
+cut and paste the variable,comma and comment from the
+donotinclude() section to the best, good, or noscreening sections(tuples)
+
+Example:
+Have this snippet from the VariableSelection.py change from
+
+best=(
+  )
+
+donotinclude(
+# Moisture:16 
+  "totH2OStd",               # Moisture
+  "H2OMMRSat",               # Moisture
+  "RelHumSurf",              # Moisture
+  "totH2OMWOnlyStd",         # Moisture * not in AIRS
+....
+)
+
+change to: --->
+
+best=(
+  "totH2OStd",               # Moisture
+  "H2OMMRSat",               # Moisture
+  "RelHumSurf",              # Moisture
+  "totH2OMWOnlyStd",         # Moisture * not in AIRS
+  )
+
+donotinclude(
+# Moisture:16 
+....
+)
+
+This will screen these four variables accordingly.
+
+The comments are there to help the user restore the configuration file, VariableSelection.py, 
+to it's original state.
+
+
+These items are displayed and should correspond to your selections:
+best:                   1
+good:                   0
+noscreening:            0
+donotinclude:           40
+ancillary include:         10
+ancillary donotinclude:    49
+Sanity checks:
+screenable should be:41 and is:41
+ancillary  should be:59 and is:59
+
