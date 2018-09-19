@@ -7,24 +7,25 @@ Overview:
 VariableSelection.py is a configuration file
 get_qualscreened_file.py is the main, driver script
 
-Format:
--------
+Output Format Selection:
+-----------------------
 NetCDF or HDF
-Use DQSS_FORMAT in VariableSelection.py
+To set this selection, use DQSS_FORMAT in VariableSelection.py
 
-Product:
---------
+Product Assignment:
+-------------------
 AIRX2RET, AIRS2RET, or AIRH2RET
-Use PRODUCT_SHORTNAME in VariableSelection.py
+To set this selection, use PRODUCT_SHORTNAME in VariableSelection.py
  
 All of the variables can be used with AIRX2RET, and AIRH2RET.
+
 Those that are not in AIRS2RET are commented like:
   "totH2OMWOnlyStd",         # Moisture * not in AIRS
-
+If you receive a 404 message, this may be the reason.
 
 Variables:
 ----------
-To run DQSS on a variable, edit VariableSelection.py,
+To run DQSS on a variable(s), edit VariableSelection.py,
 cut and paste the variable,comma and comment from the
 donotinclude() section to the best, good, or noscreening sections(tuples)
 
@@ -58,6 +59,8 @@ donotinclude(
 )
 
 This will screen these four variables accordingly.
+use ancillary_include() and ancillary_donotinclude() in a similar fashion.
+
 
 The comments are there to help the user restore the configuration file, VariableSelection.py, 
 to it's original state.
