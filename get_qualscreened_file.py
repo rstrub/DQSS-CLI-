@@ -35,6 +35,7 @@ def wget(url,label):
           '--load-cookies', '~/.urs_cookies', \
 	  '--save-cookies', '~/.urs_cookies', \
 	  '--auth-no-challenge=on',           \
+	  '--no-check-certificate',           \
 	  '--keep-session-cookies',           \
 	     url  , "-O", label]
 
