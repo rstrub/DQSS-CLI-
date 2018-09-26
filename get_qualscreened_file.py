@@ -10,6 +10,7 @@ from VariableSelection import PRODUCT_SHORTNAME
 from VariableSelection import DQSS_URL_LOCATION
 import urllib2
 import subprocess
+import optparse
 
 '''
 Author: Richard Strub
@@ -21,13 +22,70 @@ Purpose: Creates DQSS URLS by reading a user edited VariableSelection.py
 
 Synopsis: python ./get_qualscreened_file.py URL
 
+Dependencies: uses wget or curl
+having a ~/.netrc like this helps: 
+machine urs.earthdata.nasa.gov login <EarthDataLogin User Name> password <pw> 
+
+
 Further documentation at the top of VariableSelection.py
+and in a README file
 
 '''
+
+def parse_cli_args(args):
+    """Parses command line arguments.
+
+    Returns
+      options, an object whose attributes match the values of the
+      specified in the command line. e.g. '-e xyz' <=> cli_opts.e
+    Raises
+      OptionError, error parsing options
+      ValueError, invalid or missing argument
+    """
+    parser = optparse.OptionParser()
+
+    parser.add_option("-c", "--curl", metavar="curlmethod", dest="usecurl",action="store_true",
+                      help="use curl to send request to GESDISC DQSS")
+    parser.add_option("-f", "--file", metavar="method", dest="writetofile",action="store_true",
+                      help="Neither curl or wget is working so just write request to a file")
+    parser.add_option("-w", "--wget", metavar="wgetmethod", dest="usewget",action="store_true",
+                      help="use wget to send request to GESDISC DQSS")
+    parser.add_option("-u", "--url", metavar="url", dest="url",
+                      help="the location (url) of the file you want to quality screen")
+
+    cli_opts, _ = parser.parse_args(args)
+
+    # Verify required are present and not empty
+    for required_opt in ():
+        if not getattr(cli_opts, required_opt, None):
+            parser.print_help()
+            raise ValueError("-%s missing" % required_opt)
+
+    return cli_opts
 
 def eprint(*args, **kwargs):
         print(*args, file=sys.stderr, **kwargs)
 
+def write_request(url, label):
+   outputfile = label + ".request"
+   fh = open(outputfile,"w")
+   if (fh):
+      fh.write(url)
+      fh.close()
+      sys.stderr.write("wrote " + outputfile + "\n")
+   else:
+      sys.stderr.write("Unable to open " + outputfile + " for write\n\n")
+      sys.exit()
+
+def curl(url,label):
+
+   cmd = ['curl', '-L','-n',                        \
+          '-c ~/.urs_cookies', '-b ~/.urs_cookies', \
+	  '--url',  url  , "-o", label]
+
+   p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+   out = p.communicate()[0]
+   print (p.returncode)
 
 def wget(url,label):
 
@@ -176,10 +234,21 @@ script.append("FILENAME=FILEPATH")
 script.append("VARIABLES=LIST")
 
 if (len (sys.argv) <  2):
-    eprint ("\nspecify output format using DQSS_FORMAT in VariableSelection.py")
-    eprint ("\nexpecting url as argument")
+    eprint ("\nUSAGE:", sys.argv[0], "-u URL", 
+            "[-f storeRequestFilename]", "[-c useCurl]",
+            "[-w usewget] (default)" + "\n")
     sys.exit()
-url = sys.argv[1]
+
+cli_opts = parse_cli_args(sys.argv[1:])
+
+for arg in sys.argv[1:]:
+   if (arg[0] != '-'):
+      if ('http' in arg):
+         url = arg 
+         break
+if not  url:
+   url = cli_opts.url
+
 Url = urlparse(url)
 # In our case the path section of the URL is the same as the system filepath
 filename = Url.path
@@ -248,4 +317,10 @@ cgi = cgi.replace("LIST", list)
 cgi = cgi.replace("FILEPATH", filename)
 cgi = cgi.replace("MYLABEL", label)
 
-wget(cgi,label)
+
+if (cli_opts.usecurl is True):
+    curl(cgi,label)
+elif (cli_opts.writetofile is True):
+    write_request(cgi,label)
+else:
+    wget(cgi,label)
