@@ -67,6 +67,7 @@ def eprint(*args, **kwargs):
         print(*args, file=sys.stderr, **kwargs)
 
 def write_request(url, label):
+   sys.stderr.write('writing URL to file for manual submission\n')
    outputfile = label + ".request"
    fh = open(outputfile,"w")
    if (fh):
@@ -79,6 +80,7 @@ def write_request(url, label):
 
 def curl(url,label):
 
+   sys.stderr.write('Using curl\n')
    cmd = ['curl', '-L','-n',                        \
           '-c ~/.urs_cookies', '-b ~/.urs_cookies', \
 	  '--url',  url  , "-o", label]
@@ -89,6 +91,7 @@ def curl(url,label):
 
 def wget(url,label):
 
+   sys.stderr.write('Using wget\n')
    cmd = ['wget', '--content-disposition',    \
           '--load-cookies', '~/.urs_cookies', \
 	  '--save-cookies', '~/.urs_cookies', \
@@ -255,8 +258,8 @@ filename = Url.path
 label = createLabel(filename)
 checkProductAgainstURL(Url)
 
-cgi = ""
-for item in script:
+cgi = script[0]
+for item in script[1:]:
     cgi += item 
     cgi += "&" 
 cgi = cgi[:-1]    
