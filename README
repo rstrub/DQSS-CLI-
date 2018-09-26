@@ -1,6 +1,25 @@
-Example:
+Examples:
 --------
-./get_qualscreened_file.py https://airsl2.gesdisc.eosdis.nasa.gov/data//Aqua_AIRS_Level2/AIRS2RET.006/2018/123/AIRS.2018.05.03.203.L2.RetStd_IR.v6.0.31.0.G18124130912.hdf
+wget:
+./get_qualscreened_file.py  https://airsl2.gesdisc.eosdis.nasa.gov/data//Aqua_AIRS_Level2/AIRS2RET.006/2018/123/AIRS.2018.05.03.203.L2.RetStd_IR.v6.0.31.0.G18124130912.hdf
+./get_qualscreened_file.py -u https://airsl2.gesdisc.eosdis.nasa.gov/data//Aqua_AIRS_Level2/AIRS2RET.006/2018/123/AIRS.2018.05.03.203.L2.RetStd_IR.v6.0.31.0.G18124130912.hdf
+./get_qualscreened_file.py -w https://airsl2.gesdisc.eosdis.nasa.gov/data//Aqua_AIRS_Level2/AIRS2RET.006/2018/123/AIRS.2018.05.03.061.L2.RetStd_IR.v6.0.31.0.G18123140509.hdf
+curl:
+./get_qualscreened_file.py -c https://airsl2.gesdisc.eosdis.nasa.gov/data//Aqua_AIRS_Level2/AIRS2RET.006/2018/123/AIRS.2018.05.03.061.L2.RetStd_IR.v6.0.31.0.G18123140509.hdf
+file:
+1. ./get_qualscreened_file.py -f https://airsl2.gesdisc.eosdis.nasa.gov/data//Aqua_AIRS_Level2/AIRS2RET.006/2018/123/AIRS.2018.05.03.171.L2.RetStd_IR.v6.0.31.0.G18124120854.hdf
+2a.  wget -i AIRS.2018.05.03.171.L2.QCSUBRETSTD_IR.v6.0.31.0.G18124120854.nc.request -O AIRS.2018.05.03.171.L2.QCSUBRETSTD_IR.v6.0.31.0.G18124120854.nc 
+2b. cut and paste the url into a brower.
+
+
+
+Usage:
+------
+USAGE: ./get_qualscreened_file.py -u URL [-f storeRequestFilename] [-c useCurl] [-w usewget] (default)
+-u is the url of the file you want to quality screen. The only mandatory argument
+-f is used to write out your request to a file if this program's use of wget or curl is not working for you
+-c use curl for request
+-w use wget for request
 
 Overview:
 ---------
